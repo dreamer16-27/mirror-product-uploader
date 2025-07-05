@@ -1,52 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Upload LED Mirror</title>
-  <style>
-    body { font-family: sans-serif; padding: 30px; max-width: 500px; margin: auto; }
-    label { margin-top: 10px; display: block; }
-    input, button { width: 100%; padding: 10px; margin-top: 6px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Title Here - Your Store Name</title>
+    <meta name="description" content="AI-generated short description for SEO purposes.">
+    <link rel="stylesheet" href="/assets/css/style.css"> <style>
+        /* Basic styling for product page - adapt from your main style.css */
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f8f8f8; color: #333; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: flex; flex-wrap: wrap; gap: 30px; }
+
+        .product-gallery { flex: 2; min-width: 300px; }
+        .product-gallery img { max-width: 100%; height: auto; display: block; margin-bottom: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .product-info { flex: 1; min-width: 300px; }
+        .product-info h1 { font-size: 2.2em; color: #333; margin-top: 0; }
+        .price { font-size: 1.8em; color: #007bff; font-weight: bold; margin-bottom: 20px; }
+        .dimensions-section { margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 15px; }
+        .dimensions-section h3 { font-size: 1.2em; color: #555; margin-bottom: 10px; }
+        .sizes-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .sizes-list li { background-color: #f0f0f0; padding: 8px 12px; border-radius: 4px; border: 1px solid #ddd; }
+        .description-section { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
+        .description-section h2 { font-size: 1.6em; color: #333; }
+        .description-section p, .description-section ul { margin-bottom: 15px; line-height: 1.8; }
+        .buy-button { display: inline-block; background-color: #5bb25a; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-size: 1.2em; font-weight: bold; margin-top: 20px; text-align: center; }
+        .buy-button:hover { background-color: #4a9e49; transform: translateY(-2px); transition: all 0.2s ease-in-out; }
+        .trust-badges { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; text-align: center; }
+        .trust-badges img { height: 40px; margin: 0 10px; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; padding: 15px; }
+            .product-gallery, .product-info { min-width: unset; width: 100%; }
+            .product-info h1 { font-size: 1.8em; }
+            .price { font-size: 1.5em; }
+            .buy-button { width: 100%; box-sizing: border-box; }
+        }
+    </style>
 </head>
 <body>
-  <h2>Upload LED Mirror Product</h2>
-  <form id="uploadForm">
-    <label>Product Title</label>
-    <input type="text" name="title" required>
-    <label>Price (₹)</label>
-    <input type="number" name="price" required>
-    <label>Size</label>
-    <input type="text" name="size" required>
-    <label>Image URL</label>
-    <input type="url" name="image" required>
-    <button type="submit">Upload to Shopify</button>
-  </form>
+    <header>
+        <nav style="background-color: #333; padding: 10px 20px; text-align: center;">
+            <a href="/" style="color: white; text-decoration: none; font-size: 1.5em;">Your Store Logo</a>
+        </nav>
+    </header>
 
-  <script>
-    document.getElementById("uploadForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const payload = {
-        title: formData.get("title"),
-        price: formData.get("price"),
-        size: formData.get("size"),
-        image: formData.get("image")
-      };
+    <main class="container">
+        <section class="product-gallery">
+            <img src="URL_OF_MAIN_PRODUCT_IMAGE.jpg" alt="Product Title - Main Image">
+            <div class="thumbnail-gallery">
+                <img src="URL_OF_GENERATED_IMAGE_1.jpg" alt="Product Title - Lifestyle Shot" style="width: 100px; height: 100px; object-fit: cover; display: inline-block; margin-right: 10px;">
+                <img src="URL_OF_GENERATED_IMAGE_2.jpg" alt="Product Title - Detail Shot" style="width: 100px; height: 100px; object-fit: cover; display: inline-block; margin-right: 10px;">
+                </div>
+        </section>
 
-      try {
-        const res = await fetch("https://parv27.app.n8n.cloud/webhook/add-mirror-product", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
+        <section class="product-info">
+            <h1 id="product-title">The Masterpiece Print</h1>
+            <p class="price">₹<span id="product-rate">1,999.00</span></p>
 
-        const text = await res.text();
-        alert("✅ " + text);
-      } catch (err) {
-        alert("❌ Error: " + err.message);
-        console.error(err);
-      }
-    });
-  </script>
+            <div class="dimensions-section">
+                <h3>Available Sizes (Dimensions in Inches):</h3>
+                <ul class="sizes-list">
+                    <li>12" x 18"</li>
+                    <li>18" x 18"</li>
+                    <li>18" x 24"</li>
+                    <li>24" x 24"</li>
+                    </ul>
+                <p><small>*All dimensions are approximate.</small></p>
+            </div>
+
+            <a href="YOUR_SHOPIFY_PRODUCT_URL_HERE" class="buy-button" target="_blank" rel="noopener noreferrer">Buy on Shopify</a>
+
+            <div class="description-section">
+                <h2>Product Description</h2>
+                <div id="product-description">
+                    <p>Experience the vibrant beauty of "The Masterpiece Print," an exquisite piece designed to transform any space. Crafted with high-quality archival inks on premium canvas, this print captures every detail with stunning clarity and rich, enduring colors. Perfect for art enthusiasts and interior decorators alike, it brings a touch of sophistication and depth to your home or office.</p>
+                    <ul>
+                        <li>**Premium Archival Quality:** Printed on durable, fade-resistant canvas for lasting vibrancy.</li>
+                        <li>**Vivid Colors & Detail:** High-resolution printing ensures every brushstroke and hue is captured.</li>
+                        <li>**Multiple Size Options:** Available in various dimensions to perfectly fit your desired space.</li>
+                        <li>**Versatile Decor:** Ideal for living rooms, bedrooms, offices, or galleries.</li>
+                        <li>**Ready to Hang:** (Optional, if applicable) Comes with pre-installed hanging hardware for easy setup.</li>
+                    </ul>
+                    <p>Whether you're looking for a statement piece or a subtle accent, "The Masterpiece Print" is an investment in timeless elegance and artistic expression.</p>
+                </div>
+            </div>
+
+            <div class="trust-badges">
+                <img src="/assets/images/satisfaction-guaranteed.png" alt="Satisfaction Guaranteed">
+                <img src="/assets/images/secure-checkout.png" alt="Secure Checkout">
+                <img src="/assets/images/free-shipping.png" alt="Free Shipping">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align: center; padding: 20px; font-size: 0.9em; color: #777;">&copy; 2025 Your Store Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Optional: JavaScript for image gallery (e.g., clicking thumbnails to change main image)
+        // Or for dynamically updating size info if you make it interactive
+    </script>
 </body>
 </html>
