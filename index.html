@@ -14,7 +14,7 @@
     <label>Title:</label>
     <input type="text" name="title" required />
 
-    <label>Price (in ₹):</label>
+    <label>Price (₹):</label>
     <input type="number" name="price" required />
 
     <label>Size:</label>
@@ -39,19 +39,20 @@
       };
 
       try {
-        const response = await fetch('https://parv27.app.n8n.cloud/webhook-test/upload-product', {
+        const res = await fetch('https://parv27.app.n8n.cloud/webhook-test/upload-product', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
 
-        if (response.ok) {
-          alert('Product sent to n8n!');
+        if (res.ok) {
+          const msg = await res.text();
+          alert("✅ Product sent to n8n!\n" + msg);
         } else {
-          alert('Error sending to n8n');
+          alert("❌ Server responded with status: " + res.status);
         }
       } catch (err) {
-        alert('Network error');
+        alert("❌ Error sending data: " + err.message);
         console.error(err);
       }
     });
