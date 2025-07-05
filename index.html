@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload LED Mirror</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Upload New LED Mirror</h2>
+  <form id="uploadForm">
+    <input type="text" id="title" placeholder="Product Title" required />
+    <input type="text" id="price" placeholder="Price (e.g., 2499)" required />
+    <input type="text" id="size" placeholder="Size (e.g., 18x24 inches)" required />
+    <input type="text" id="image" placeholder="Image URL" required />
+    <button type="submit">Submit to Shopify</button>
+  </form>
+  <div id="responseMessage"></div>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const price = document.getElementById('price').value;
+      const size = document.getElementById('size').value;
+      const image = document.getElementById('image').value;
+
+      const webhookUrl = "https://your-n8n-url/webhook/upload-product"; // replace with actual webhook
+
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title,
+          price,
+          size,
+          image
+        })
+      });
+
+      const message = document.getElementById("responseMessage");
+      if (response.ok) {
+        message.innerHTML = "<p class='success'>✅ Product uploaded successfully!</p>";
+      } else {
+        message.innerHTML = "<p class='error'>❌ Failed to upload product.</p>";
+      }
+    });
+  </script>
+</body>
+</html>
