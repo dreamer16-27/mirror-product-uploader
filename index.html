@@ -34,7 +34,7 @@
       };
 
       try {
-        const res = await fetch("/.netlify/functions/proxy-n8n", {
+        const res = await fetch("https://parv27.app.n8n.cloud/webhook/add-mirror-product", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
