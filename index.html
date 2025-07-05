@@ -1,59 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>LED Mirror Uploader</title>
+  <title>Upload LED Mirror</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; max-width: 500px; margin: auto; }
-    label { display: block; margin-top: 10px; }
-    input, button { width: 100%; padding: 8px; margin-top: 5px; }
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+    }
+    label { margin-top: 10px; display: block; }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+    }
   </style>
 </head>
 <body>
   <h2>Upload LED Mirror Product</h2>
   <form id="uploadForm">
-    <label>Title:</label>
-    <input type="text" name="title" required />
+    <label>Product Title</label>
+    <input type="text" name="title" required>
 
-    <label>Price (₹):</label>
-    <input type="number" name="price" required />
+    <label>Price (₹)</label>
+    <input type="number" name="price" required>
 
-    <label>Size:</label>
-    <input type="text" name="size" required />
+    <label>Size</label>
+    <input type="text" name="size" required>
 
-    <label>Image URL:</label>
-    <input type="url" name="image" required />
+    <label>Image URL</label>
+    <input type="url" name="image" required>
 
     <button type="submit">Upload to Shopify</button>
   </form>
 
   <script>
-    document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+    document.getElementById("uploadForm").addEventListener("submit", async function(e) {
       e.preventDefault();
 
       const formData = new FormData(e.target);
-      const data = {
-        title: formData.get('title'),
-        price: formData.get('price'),
-        size: formData.get('size'),
-        image: formData.get('image')
+      const payload = {
+        title: formData.get("title"),
+        price: formData.get("price"),
+        size: formData.get("size"),
+        image: formData.get("image")
       };
 
       try {
-        const res = await fetch('https://parv27.app.n8n.cloud/webhook/upload-product', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+        const response = await fetch("https://parv27.app.n8n.cloud/webhook/upload-product", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
         });
 
-        if (res.ok) {
-          const msg = await res.text();
-          alert("✅ Product sent to n8n!\n" + msg);
+        if (response.ok) {
+          alert("✅ Product sent to Shopify via n8n!");
         } else {
-          alert("❌ Server responded with status: " + res.status);
+          const text = await response.text();
+          alert("❌ Server error: " + text);
         }
       } catch (err) {
-        alert("❌ Error sending data: " + err.message);
-        console.error(err);
+        alert("❌ Network error: " + err.message);
+        console.error("Fetch error:", err);
       }
     });
   </script>
